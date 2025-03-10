@@ -4,9 +4,10 @@ APP_NAME="cursor"  # Nome base do aplicativo
 APPIMAGE_NAME="cursor.AppImage"  # Nome do arquivo AppImage esperado
 ICON_NAME="cursor.png"  # Nome do ícone esperado
 DESKTOP_FILE="cursor.desktop"  # Nome do arquivo .desktop esperado
+APP_LAUNCHER_NAME="cursor_launcher.sh"
 
 # Diretórios de instalação
-APP_DIR="$HOME/Applications"
+APP_DIR="$HOME/Applications/cursor"
 ICON_DEST="/usr/share/icons/hicolor/256x256/apps"
 DESKTOP_DEST="/usr/share/applications"
 
@@ -31,6 +32,15 @@ else
     echo "Arquivo $APPIMAGE_NAME não encontrado!"
 fi
 
+# Mover o launcher para a pasta Applications e torná-lo executável
+if [ -f "$APP_LAUNCHER_NAME" ]; then
+    echo "Movendo $APP_LAUNCHER_NAME para $APP_DIR..."
+    rsync -av "$APP_LAUNCHER_NAME" "$APP_DIR"
+    chmod +x "$APP_DIR/$APP_LAUNCHER_NAME"
+else
+    echo "Arquivo $APP_LAUNCHER_NAME não encontrado!"
+fi
+
 # Mover o ícone para a pasta de ícones do sistema
 if [ -f "$ICON_NAME" ]; then
     echo "Movendo ícone para $ICON_DEST..."
@@ -53,6 +63,6 @@ echo "Atualizando cache de ícones e atalhos..."
 sudo update-desktop-database
 sudo gtk-update-icon-cache -f /usr/share/icons/hicolor
 
-sudo ln -s "$HOME/Applications/cursor.AppImage" /usr/local/bin/cursor
+sudo ln -sfn "$APP_DIR/$APP_LAUNCHER_NAME" /usr/local/bin/cursor
 
 echo "Instalação concluída!"
