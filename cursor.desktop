@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Cursor
+Comment=Cursor Editor
+Exec=~/Applications/cursor/cursor.AppImage
+Terminal=false
+Type=Application
+Categories=Utility;Development;
+Icon=/usr/share/icons/hicolor/256x256/apps/cursor.png
