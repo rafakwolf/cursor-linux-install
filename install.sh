@@ -53,7 +53,7 @@ fi
 # Mover o arquivo .desktop para /usr/share/applications/
 if [ -f "$DESKTOP_FILE" ]; then
     echo "Movendo arquivo .desktop para $DESKTOP_DEST..."
-    rsync -av "$DESKTOP_FILE" "$DESKTOP_DEST"
+    sudo install -m 644 "$DESKTOP_FILE" "$DESKTOP_DEST"
 else
     echo "Arquivo $DESKTOP_FILE não encontrado!"
 fi

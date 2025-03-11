@@ -1,8 +1,17 @@
 [Desktop Entry]
-Name=Cursor
+Categories=Utility;Development;
+Comment[en_US]=Cursor Editor
 Comment=Cursor Editor
 Exec=~/Applications/cursor/cursor.AppImage --no-sandbox
-Terminal=false
-Type=Application
-Categories=Utility;Development;
+GenericName[en_US]=
+GenericName=
 Icon=/usr/share/icons/hicolor/256x256/apps/cursor.png
+MimeType=
+Name[en_US]=Cursor
+Name=Cursor
+Path=
+PrefersNonDefaultGPU=false
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
