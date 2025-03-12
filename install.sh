@@ -10,6 +10,7 @@ APP_LAUNCHER_NAME="cursor_launcher.sh"
 APP_DIR="$HOME/Applications/cursor"
 ICON_DEST="/usr/share/icons/hicolor/256x256/apps"
 DESKTOP_DEST="/usr/share/applications"
+DESKTOP_DEST_USER="/home/$(whoami)/.local/share/applications"
 
 # Criar a pasta Applications no diretório home, se não existir
 if [ ! -d "$APP_DIR" ]; then
@@ -51,9 +52,12 @@ else
 fi
 
 # Mover o arquivo .desktop para /usr/share/applications/
+# Mover o arquivo .desktop para /home/$(whoami)/.local/share/applications/
 if [ -f "$DESKTOP_FILE" ]; then
     echo "Movendo arquivo .desktop para $DESKTOP_DEST..."
     sudo install -m 644 "$DESKTOP_FILE" "$DESKTOP_DEST"
+    echo "Movendo arquivo .desktop para $DESKTOP_DEST_USER..."
+    sudo install -m 644 "$DESKTOP_FILE" "$DESKTOP_DEST_USER"
 else
     echo "Arquivo $DESKTOP_FILE não encontrado!"
 fi
